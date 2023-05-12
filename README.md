@@ -1,6 +1,6 @@
 # Real Time Web ReadMe
 
-<img src="dog.jpg" height=400px>
+<img src="dog.jpg" height=800px width=100%>
 
 ## Link naar eindproduct/deployment
 https://real-time-web-2223-production-4795.up.railway.app/
