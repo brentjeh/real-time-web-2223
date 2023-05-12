@@ -49,10 +49,6 @@ Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te m
 
 <img src="data-model.jpg" height=400px>
 
-### Week 3
-
-
-
 ## De data-lifecycle
 
 <img src="data-lifecycle-diagram.jpg" height=400px>
