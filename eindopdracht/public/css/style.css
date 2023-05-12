@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@600&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --dark: #131313;
+    --white: #fff;
+
+    --schibsted: 'Schibsted Grotesk', sans-serif;
+    --figtree: 'Figtree', sans-serif;
+}
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--dark);
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+
+
+/* Main */
+
+main {
+
+}
+
+    img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+
+
+
+
+/* Section */    
+
+section {
+    padding: 3em;
+}
+
+    h1 {
+        font-size: 3em;
+        color: var(--white);
+        font-family: var(--figtree);
+    }
+
+    p {
+        color: var(--white);
+        font-family: var(--schibsted);
+    }
+
+
+
+
+
+/* Messages */   
+
+.chatroom {
+    max-height: 40em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 1em;
+}
+
+    #send-container {
+        padding: 1.4em 0;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 1em;
+    }
+
+        #send-container #message-input {
+            background-color: #252525;
+            padding: 1em;
+            border: none;
+            border-radius: 0.5em;
+            font-family: var(--schibsted);
+            font-size: 1.4em;   
+            color: white;
+        }
+
+        #send-container #message-input:focus {
+            outline: none;
+        }
+
+        #send-container #send-button {
+            padding: 1em;
+            color: var(--dark);
+            font-family: var(--figtree);
+            font-size: 1.4em;
+            border: none;
+            border-radius: 0.5em;
+            cursor: pointer;
+        }
+
+        #send-container #send-button:hover {
+            background-color: #3a86ff;
+            color: var(--white);
+        }
+
+        #send-container #send-button:active {
+            background-color: #ff006e;
+            color: var(--white);
+        }
+
+.message {
+    padding: 0.25em 0;
+    color: var(--white);
+    font-family: var(--schibsted);
+    font-size: 1.4em;
+}
+
+.correct-message {
+    padding: 0.75em 0em;
+    color: #8ac926;
+    font-family: var(--schibsted);
+    font-size: 1.4em;
+}
