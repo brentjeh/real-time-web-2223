@@ -1,6 +1,7 @@
 # Real Time Web ReadMe
 
 <img src="dog.jpg" height=1200px width=100%>
+(Geen poging om extra punten te scoren met een schattige hond)
 
 ## Link naar eindproduct/deployment
 https://real-time-web-2223-production-4795.up.railway.app/
