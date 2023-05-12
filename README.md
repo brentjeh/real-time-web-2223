@@ -51,3 +51,19 @@ De api die ik gebruikt heb voor mijn opdracht is de Dog API. Met deze API kan je
   Rasafbeeldingen: Haalt een lijst met afbeeldingen op voor een specifiek hondenras.
   Raszoeken: Zoekt naar een specifiek hondenras op naam.
   Feiten: Haalt een willekeurig hondenfeit op.
+ 
+## Installatie
+Gebruik de terminal om dit project te installeren en clonen.
+```
+git clone https://github.com/brentjeh/real-time-web-2223.git
+```
+
+Installeer de packages.
+```
+npm install
+```
+
+Start de server.
+```
+npm run start
+```
