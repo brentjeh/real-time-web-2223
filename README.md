@@ -1,7 +1,23 @@
 # Real Time Web ReadMe
 
-## Link naar eindproduct
+## Link naar eindproduct/deployment
 https://real-time-web-2223-production-4795.up.railway.app/
+
+## Installatie
+Gebruik de terminal om dit project te installeren en clonen.
+```
+git clone https://github.com/brentjeh/real-time-web-2223.git
+```
+
+Installeer de packages.
+```
+npm install
+```
+
+Start de server.
+```
+npm run start
+```
 
 ## Intro
 Het vak Real Time Web wordt gegeven door Justus en Shyanta. In dit vak ga ik leren hoe ik een real time web applicatie maak. Dit houdt in dat ik technieken ga leren hoe ik een open connectie opzet tussen de client en de server. Hierdoor kan ik real-time data versturen in beide richtingen, op hetzelfde moment.
@@ -37,7 +53,7 @@ Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te m
 
 ## De data-lifecycle
 
-<img src="data-lifecycle-model.jpg" height=400px>
+<img src="data-lifecycle-diagram.jpg" height=400px>
 
 ## Real time events
 
