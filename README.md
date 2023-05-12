@@ -1,6 +1,6 @@
 # Real Time Web ReadMe
 
-## Link naar eindproduct
+## Link naar eindproduct/deployment
 https://real-time-web-2223-production-4795.up.railway.app/
 
 ## Intro
