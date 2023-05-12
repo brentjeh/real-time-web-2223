@@ -37,6 +37,8 @@ Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te m
 
 ## De data-lifecycle
 
+<img src="data-lifecycle-model.jpg" height=400px>
+
 ## Real time events
 
 ## External data
