@@ -17,7 +17,7 @@ Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond 
 ### Week 1
 In de eerste week heb ik met klasgenoten gewerkt aan een chat applicatie, om op te warmen en te kijken hoe sockets werken. Verder ben ik ga nadenken over mijn concept voor de eindopdracht.
 
-<img src="/readmeimgs/datamodelAPI.png" height=400px>
+<img src="concept.jpg" height=400px>
 
 ### Week 1
 
