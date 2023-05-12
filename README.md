@@ -14,16 +14,17 @@ Het vak Real Time Web wordt gegeven door Justus en Shyanta. In dit vak ga ik ler
 - Omgaan met sockets en socket.io
 - Omgaan met node js en express js
 
-## Mijn concept
-Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond is gebaseerd op een plaatje op de webpagina. De gebruiker kan, met meerdere mensen, raden welk hondsoort er op het plaatje wordt weergegeven. Zodra de gebruiker het antwoord juist heeft geraden, wordt dit in de chat weergegeven.
-
-<img src="concept.jpg" height=400px>
-
 ### Week 1
 In de eerste week heb ik met klasgenoten gewerkt aan een chat applicatie, om op te warmen en te kijken hoe sockets werken. Verder ben ik ga nadenken over mijn concept voor de eindopdracht.
 
 ### Week 2
-In de tweede week ben ik gaan kijken hoe ik sockets kan toepassen tot mijn eigen ontwerp. 
+Deze week ga ik dieper in op client-server communicatie en datamanagement.
+Als eerst ging ik een concept bedenken. Ik wist wel dat ik het mezelf niet al te moeilijk ging maken, aangezien ik in het vorige vak al best wat moeite met client-server communicatie had. Ik had hiervoor gelukkig een heel makkelijke API gevonden: De Dog API.
+
+#### Mijn concept
+Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond is gebaseerd op een plaatje op de webpagina. De gebruiker kan, met meerdere mensen, raden welk hondsoort er op het plaatje wordt weergegeven. Zodra de gebruiker het antwoord juist heeft geraden, wordt dit in de chat weergegeven.
+
+<img src="concept.jpg" height=400px>
 
 ## De data-lifecycle
 
