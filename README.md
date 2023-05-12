@@ -23,10 +23,19 @@ Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond 
 In de eerste week heb ik met klasgenoten gewerkt aan een chat applicatie, om op te warmen en te kijken hoe sockets werken. Verder ben ik ga nadenken over mijn concept voor de eindopdracht.
 
 ### Week 2
+In de tweede week ben ik gaan kijken hoe ik sockets kan toepassen tot mijn eigen ontwerp. 
 
 ## De data-lifecycle
 
 ## Real time events
 
 ## External data
-De api die ik gebruikt heb voor mijn opdracht is de Dog API. Met deze API kan je plaatjes en hondsoort-namen ophalen. De hondsoorten kan je uit een URL krijgen (zoals ik heb gedaan).
+De api die ik gebruikt heb voor mijn opdracht is de Dog API. Met deze API kan je plaatjes en hondsoort-namen ophalen. De hondsoorten kan je uit een URL krijgen (zoals ik heb gedaan). De Dog API is een RESTful API waarmee ontwikkelaars toegang hebben tot een uitgebreide database met informatie over honden, zoals rassen, afbeeldingen en feiten. Hier zijn enkele belangrijke eigenschappen van de Dog API:
+- Rate Limiting: De Dog API heeft rate limiting ingesteld om misbruik te voorkomen en ervoor te zorgen dat de service presteert voor alle gebruikers. De huidige rate limit is       ingesteld op 1000 verzoeken per uur.
+- Autorisatiemethode: Om de Dog API te gebruiken, moet je een API-sleutel verkrijgen van de API-provider. De API-sleutel wordt gebruikt om je verzoeken te authenticeren en ervoor   te zorgen dat je toestemming hebt om toegang te krijgen tot de API.
+- API-methoden: De Dog API biedt verschillende API-methoden die ontwikkelaars kunnen gebruiken om informatie over honden op te halen. Deze omvatten: 
+  Rassenlijst: Haalt een lijst op van alle hondenrassen die door de API worden erkend.
+  Willekeurige afbeelding: Haalt een willekeurige afbeelding van een hond op.
+  Rasafbeeldingen: Haalt een lijst met afbeeldingen op voor een specifiek hondenras.
+  Raszoeken: Zoekt naar een specifiek hondenras op naam.
+  Feiten: Haalt een willekeurig hondenfeit op.
