@@ -17,10 +17,10 @@ Het vak Real Time Web wordt gegeven door Justus en Shyanta. In dit vak ga ik ler
 ## Mijn concept
 Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond is gebaseerd op een plaatje op de webpagina. De gebruiker kan, met meerdere mensen, raden welk hondsoort er op het plaatje wordt weergegeven. Zodra de gebruiker het antwoord juist heeft geraden, wordt dit in de chat weergegeven.
 
+<img src="concept.jpg" height=400px>
+
 ### Week 1
 In de eerste week heb ik met klasgenoten gewerkt aan een chat applicatie, om op te warmen en te kijken hoe sockets werken. Verder ben ik ga nadenken over mijn concept voor de eindopdracht.
-
-<img src="concept.jpg" height=400px>
 
 ### Week 2
 
