@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -21,7 +21,7 @@ app.get('', (req, res) => {
     res.render('index')
 })
 
-http.listen(port, () => console.info(`Listening on port ${port}`))
+http.listen(PORT, () => console.info(`Listening on port ${PORT}`))
 
 // function getRandomDogImage() {
 //     fetch('https://dog.ceo/api/breeds/image/random')
