@@ -1,5 +1,8 @@
 # Real Time Web ReadMe
 
+<img src="dog.jpg" height=1200px width=100%>
+(Geen poging om extra punten te scoren met een schattige hond)
+
 ## Link naar eindproduct/deployment
 https://real-time-web-2223-production-4795.up.railway.app/
 
@@ -47,15 +50,9 @@ Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te m
 
 <img src="data-model.jpg" height=400px>
 
-### Week 3
-
-
-
 ## De data-lifecycle
 
 <img src="data-lifecycle-diagram.jpg" height=400px>
-
-## Real time events
 
 ## External data
 De api die ik gebruikt heb voor mijn opdracht is de Dog API. Met deze API kan je plaatjes en hondsoort-namen ophalen. De hondsoorten kan je uit een URL krijgen (zoals ik heb gedaan). De Dog API is een RESTful API waarmee ontwikkelaars toegang hebben tot een uitgebreide database met informatie over honden, zoals rassen, afbeeldingen en feiten. Hier zijn enkele belangrijke eigenschappen van de Dog API:
