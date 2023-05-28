@@ -127,7 +127,7 @@ socket.on('send-chat-message', message => {
     })
 ```
 
-Deze code zorgt voor wanneer een user disconnect.
+Deze code zorgt voor wat er gebeurt wanneer een user de verbinding verbreekt.
 ```
 socket.on('disconnect', () => {
         socket.broadcast.emit('user-disconnected', users[socket.id])
@@ -182,7 +182,41 @@ Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat
 socket.on('user-disconnected', name => {
   appendMessage(`${name} disconnected`);
 });
+```
 
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een gebruiker correct heeft geraden, en voegt een melding toe aan de chatinterface.
+```
+socket.on('correct', data => {
+  const messageElement = document.createElement('div');
+  messageElement.innerText = (`${data.name} has guessed correctly!`);
+  messageElement.classList.add('correct-message');
+  messageContainer.append(messageElement);
+  const nameDog = data.message.split('/')[4];
+  console.log(nameDog);
+});
+```
+
+Deze code behandelt het verzenden van een chatbericht van de client naar de server wanneer het ingevulde tekstveld wordt ingediend.
+```
+messageForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const message = messageInput.value;
+  appendMessage(`You: ${message}`);
+  socket.emit('send-chat-message', message);
+  messageInput.value = '';
+});
+```
+
+Deze code definieert een functie genaamd appendMessage die verantwoordelijk is voor het toevoegen van een bericht aan de chatinterface.
+```
+function appendMessage(message) {
+  const messageElement = document.createElement('div');
+  messageElement.innerText = message;
+  messageElement.classList.add('message');
+  messageContainer.append(messageElement);
+  
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
 ```
 
 #### Data model
