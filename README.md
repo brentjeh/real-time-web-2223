@@ -45,6 +45,9 @@ Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond 
 
 <img src="concept.jpg" height=400px>
 
+## De code
+
+
 #### Data model
 Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te maken, heb ik een data model gemaakt. Hierin heb ik de eigenschappen van de Dog API gezet.
 
