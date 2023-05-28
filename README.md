@@ -45,6 +45,180 @@ Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond 
 
 <img src="concept.jpg" height=400px>
 
+## De code
+De structuur van mijn app:
+
+public/css/style.css
+public/js/script.js
+views/index.ejs
+app.js
+package-lock.json
+package.json
+
+### app.js
+Het app.js bestand is de hoofdserver van mijn app. De server gebruikt socket.io, node.js en Express.
+
+De server luistert naar een connectie.
+```js
+io.on('connection', socket => {
+```
+
+De server roept de statische bestanden op.
+```js
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/img', express.static(__dirname + 'public/img'))
+```
+
+Hier haalt de server een willekeurig plaatje van een hond en de naam van het rassensoort van de hond. Met 'breed' wordt de naam van het rassensoort van de hond uit de URL gehaald.
+```js
+const randomDog = async () => {
+  const url = `https://dog.ceo/api/breeds/image/random`
+  const pokeData = await fetchData(url)
+  data = pokeData
+  console.log(data)
+  breed = data.message.split('/')[4];
+  return data
+  return breed
+}
+
+async function fetchData(url){
+  const apiData = await fetch(url)
+      .then(response => response.json())
+      .catch(err => console.log(err))
+  return apiData
+};
+```
+
+Dit stuk code verwerkt een nieuwe gebruiker die verbinding maakt met de socket.io-server. Vervolgens wordt er een bericht verstuurd naar alle andere clients (behalve de huidige socket) om hen op de hoogte te stellen van de nieuwe gebruiker. Dit gebeurt met behulp van het event 'user-connected' en de naam van de nieuwe gebruiker als argument. Daarna wordt er de functie 'randomDog()' opgeroepen om gegevens over een willekeurige hond te genereren. Zodra deze gegevens beschikbaar zijn, worden ze naar alle clients gestuurd met behulp van het event 'render-dog'. Dit stelt alle clients in staat om de gegevens te gebruiken en de hond op hun eigen interface weer te geven.
+```js
+socket.on('new-user', name => {
+        users[socket.id] = name
+        socket.broadcast.emit('user-connected', name)
+        randomDog()
+        // console.log(breed)
+
+        .then(data => {
+            io.emit('render-dog', data)
+        })
+    })
+```
+
+Dit stuk code verzend de chatgeschiedenis.
+```js
+socket.emit('history', history)
+```
+
+Deze code voegt het ontvangen bericht toe aan de geschiedenis, stuurt het chatbericht naar alle andere clients, inclusief de naam van de afzender en controleert of het ontvangen bericht gelijk is aan de rassensoort van de hond en geeft daarbij een bijbehorende 'correct' message.
+```js
+socket.on('send-chat-message', message => {
+        while (history.length > historySize) {
+          history.shift()
+        }
+        history.push(message);
+        console.log(history)
+
+        socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
+
+        if (message  ==  breed) {
+            io.emit('correct', { data: data, name: users[socket.id] })
+        }
+    })
+```
+
+Deze code zorgt voor wat er gebeurt wanneer een user de verbinding verbreekt.
+```js
+socket.on('disconnect', () => {
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+    })
+```
+
+### script.js
+Dit is het belangrijkste client-side JavaScript-bestand. Het maakt verbinding met de server via socket.io en luistert naar verschillende events.
+
+Dit stuk code zorgt voor een prompt die aan de gebruiker vraagt wat de gewenste gebruikersnaam is die hij of zij wilt gebruiken.
+```js
+const name = prompt('What is your name?')
+appendMessage('You joined')
+socket.emit('new-user', name)
+```
+
+Deze code behandelt het ontvangen van een chatbericht van de server en voegt het bericht toe aan de chatinterface.
+```js
+socket.on('chat-message', data => {
+  appendMessage(`${data.name}: ${data.message}`)
+})
+```
+
+Deze code behandelt het ontvangen van de chatgeschiedenis van de server en voegt elk bericht toe aan de chatinterface.
+```js
+socket.on('history', history => {
+  history.forEach((message) => {
+    appendMessage(message);
+  });
+});
+```
+
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een nieuwe gebruiker is verbonden, en voegt een melding toe aan de chatinterface.
+```js
+socket.on('user-connected', name => {
+  appendMessage(`${name} connected`);
+});
+```
+
+Deze code behandelt het ontvangen van gegevens over een hond van de server en laat de afbeelding van de hond zien in een HTML-element.
+```js
+socket.on('render-dog', data => {
+  console.log(data);
+  var dogImage = document.getElementById('dog-image');
+  dogImage.src = data.message;
+});
+```
+
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een gebruiker de verbinding heeft verbroken, en voegt een melding toe aan de chatinterface.
+```js
+socket.on('user-disconnected', name => {
+  appendMessage(`${name} disconnected`);
+});
+```
+
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een gebruiker correct heeft geraden, en voegt een melding toe aan de chatinterface.
+```js
+socket.on('correct', data => {
+  const messageElement = document.createElement('div');
+  messageElement.innerText = (`${data.name} has guessed correctly!`);
+  messageElement.classList.add('correct-message');
+  messageContainer.append(messageElement);
+  const nameDog = data.message.split('/')[4];
+  console.log(nameDog);
+});
+```
+
+Deze code behandelt het verzenden van een chatbericht van de client naar de server wanneer het ingevulde tekstveld wordt ingediend.
+```js
+messageForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const message = messageInput.value;
+  appendMessage(`You: ${message}`);
+  socket.emit('send-chat-message', message);
+  messageInput.value = '';
+});
+```
+
+Deze code definieert een functie genaamd appendMessage die verantwoordelijk is voor het toevoegen van een bericht aan de chatinterface.
+```js
+function appendMessage(message) {
+  const messageElement = document.createElement('div');
+  messageElement.innerText = message;
+  messageElement.classList.add('message');
+  messageContainer.append(messageElement);
+  
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
+```
+
 #### Data model
 Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te maken, heb ik een data model gemaakt. Hierin heb ik de eigenschappen van de Dog API gezet.
 
