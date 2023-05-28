@@ -55,6 +55,49 @@ app.js
 package-lock.json
 package.json
 
+### app.js
+Het app.js bestand is de hoofdserver van mijn app. De server gebruikt socket.io, node.js en Express.
+
+De server luistert naar een connectie.
+```
+io.on('connection', socket => {
+```
+
+De server roept de statische bestanden op.
+```
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/img', express.static(__dirname + 'public/img'))
+```
+
+Hier haalt de server een willekeurig plaatje van een hond en de naam van het rassensoort van de hond. Met 'breed' wordt de naam van het rassensoort van de hond uit de URL gehaald.
+```
+const randomDog = async () => {
+  const url = `https://dog.ceo/api/breeds/image/random`
+  const pokeData = await fetchData(url)
+  data = pokeData
+  console.log(data)
+  breed = data.message.split('/')[4];
+  return data
+  return breed
+}
+
+async function fetchData(url){
+  const apiData = await fetch(url)
+      .then(response => response.json())
+      .catch(err => console.log(err))
+  return apiData
+};
+```
+
+### script.js
+```
+socket.on('chat-message', data => {
+  appendMessage(`${data.name}: ${data.message}`)
+})
+```
+
 #### Data model
 Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te maken, heb ik een data model gemaakt. Hierin heb ik de eigenschappen van de Dog API gezet.
 
