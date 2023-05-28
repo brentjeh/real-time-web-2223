@@ -46,7 +46,14 @@ Mijn concept is een spel waarin je moet raden welke hondsoort een bepaalde hond 
 <img src="concept.jpg" height=400px>
 
 ## De code
+De structuur van mijn app:
 
+public/css/style.css
+public/js/script.js
+views/index.ejs
+app.js
+package-lock.json
+package.json
 
 #### Data model
 Omdat ik een klein idee wil hebben over welke data ik nodig heb om dit spel te maken, heb ik een data model gemaakt. Hierin heb ik de eigenschappen van de Dog API gezet.
