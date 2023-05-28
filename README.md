@@ -91,6 +91,50 @@ async function fetchData(url){
 };
 ```
 
+Dit stuk code verwerkt een nieuwe gebruiker die verbinding maakt met de socket.io-server. Vervolgens wordt er een bericht verstuurd naar alle andere clients (behalve de huidige socket) om hen op de hoogte te stellen van de nieuwe gebruiker. Dit gebeurt met behulp van het event 'user-connected' en de naam van de nieuwe gebruiker als argument. Daarna wordt er de functie 'randomDog()' opgeroepen om gegevens over een willekeurige hond te genereren. Zodra deze gegevens beschikbaar zijn, worden ze naar alle clients gestuurd met behulp van het event 'render-dog'. Dit stelt alle clients in staat om de gegevens te gebruiken en de hond op hun eigen interface weer te geven.
+```
+socket.on('new-user', name => {
+        users[socket.id] = name
+        socket.broadcast.emit('user-connected', name)
+        randomDog()
+        // console.log(breed)
+
+        .then(data => {
+            io.emit('render-dog', data)
+        })
+    })
+```
+
+Dit stuk code verzend de chatgeschiedenis.
+```
+socket.emit('history', history)
+```
+
+Deze code voegt het ontvangen bericht toe aan de geschiedenis, stuurt het chatbericht naar alle andere clients, inclusief de naam van de afzender en controleert of het ontvangen bericht gelijk is aan de rassensoort van de hond en geeft daarbij een bijbehorende 'correct' message.
+```
+socket.on('send-chat-message', message => {
+        while (history.length > historySize) {
+          history.shift()
+        }
+        history.push(message);
+        console.log(history)
+
+        socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
+
+        if (message  ==  breed) {
+            io.emit('correct', { data: data, name: users[socket.id] })
+        }
+    })
+```
+
+Deze code zorgt voor wanneer een user disconnect.
+```
+socket.on('disconnect', () => {
+        socket.broadcast.emit('user-disconnected', users[socket.id])
+        delete users[socket.id]
+    })
+```
+
 ### script.js
 ```
 socket.on('chat-message', data => {
