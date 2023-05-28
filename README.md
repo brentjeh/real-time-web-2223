@@ -136,10 +136,53 @@ socket.on('disconnect', () => {
 ```
 
 ### script.js
+Dit is het belangrijkste client-side JavaScript-bestand. Het maakt verbinding met de server via socket.io en luistert naar verschillende events.
+
+Dit stuk code zorgt voor een prompt die aan de gebruiker vraagt wat de gewenste gebruikersnaam is die hij of zij wilt gebruiken.
+```
+const name = prompt('What is your name?')
+appendMessage('You joined')
+socket.emit('new-user', name)
+```
+
+Deze code behandelt het ontvangen van een chatbericht van de server en voegt het bericht toe aan de chatinterface.
 ```
 socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
+```
+
+Deze code behandelt het ontvangen van de chatgeschiedenis van de server en voegt elk bericht toe aan de chatinterface.
+```
+socket.on('history', history => {
+  history.forEach((message) => {
+    appendMessage(message);
+  });
+});
+```
+
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een nieuwe gebruiker is verbonden, en voegt een melding toe aan de chatinterface.
+```
+socket.on('user-connected', name => {
+  appendMessage(`${name} connected`);
+});
+```
+
+Deze code behandelt het ontvangen van gegevens over een hond van de server en laat de afbeelding van de hond zien in een HTML-element.
+```
+socket.on('render-dog', data => {
+  console.log(data);
+  var dogImage = document.getElementById('dog-image');
+  dogImage.src = data.message;
+});
+```
+
+Deze code behandelt het ontvangen van een bericht van de server dat aangeeft dat een gebruiker de verbinding heeft verbroken, en voegt een melding toe aan de chatinterface.
+```
+socket.on('user-disconnected', name => {
+  appendMessage(`${name} disconnected`);
+});
+
 ```
 
 #### Data model
