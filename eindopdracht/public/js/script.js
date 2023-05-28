@@ -26,6 +26,12 @@ socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
 
+socket.on('history', history => {
+  history.forEach((message) => {
+    appendMessage(message)
+  })
+})
+
 socket.on('user-connected', name => {
   appendMessage(`${name} connected`)
 })

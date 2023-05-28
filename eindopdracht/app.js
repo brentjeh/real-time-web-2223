@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -21,7 +21,7 @@ app.get('', (req, res) => {
     res.render('index')
 })
 
-http.listen(PORT, () => console.info(`Listening on port ${PORT}`))
+http.listen(port, () => console.info(`Listening on port ${port}`))
 
 // function getRandomDogImage() {
 //     fetch('https://dog.ceo/api/breeds/image/random')
@@ -40,6 +40,9 @@ http.listen(PORT, () => console.info(`Listening on port ${PORT}`))
 let data;
 let breed;
 
+const historySize = 50;
+
+let history = []
 
 const randomDog = async () => {
   const url = `https://dog.ceo/api/breeds/image/random`
@@ -77,7 +80,15 @@ io.on('connection', socket => {
             io.emit('render-dog', data)
         })
     })
+    socket.emit('history', history)
+
     socket.on('send-chat-message', message => {
+        while (history.length > historySize) {
+          history.shift()
+        }
+        history.push(message);
+        console.log(history)
+
         socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
 
         if (message  ==  breed) {
